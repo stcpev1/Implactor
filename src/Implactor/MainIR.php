@@ -38,8 +38,6 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerToggleFlightEvent;
-use pocketmine\level\sound\EndermanTeleportSound;
-use pocketmine\level\sound\DoorCrashSound;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Location;
@@ -70,8 +68,7 @@ class MainIR extends PluginBase implements Listener {
 	
 	     public function onPlayerJoin(PlayerJoinEvent $ev): void{
              $player = $ev->getPlayer();
-             $player->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
-             $player->getLevel()->addSound(new EndermanTeleportSound($player));
+             $ev->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
        }
          
           public function onHit(EntityDamageEvent $ev): void{
@@ -84,12 +81,11 @@ class MainIR extends PluginBase implements Listener {
      
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
-         $player->setQuitMessage("§8[§c-§8] §c{$player->getName()}");
-          $player->getLevel()->addSound(new DoorCrashSound($player));
+         $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
       }
   
   
-          public function onDeath(PlayerDeathEvent $ev): void{
+          public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
           $player->kill();
