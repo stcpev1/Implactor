@@ -27,7 +27,7 @@ use pocketmine\scheduler\PluginTask;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\plugin\Plugin;
-use pocketmine\level\particle\BubbleParticle;
+use pocketmine\level\particle\HappyVillagerParticle;
 use pocketmine\math\Vector3;
 use pocketmine\level\Level;
 use pocketmine\level\Position;
@@ -58,7 +58,7 @@ class HubParticle extends PluginTask {
     $radius = 0.5;
     $count = 100;
     
-                 $hubp = new BubbleParticle($center, $r, $g, $b, 1);
+                 $hubp = new HappyVillagerParticle($center, $r, $g, $b, 1);
                 for($yaw = 0, $y = $center->y; $y < $center->y + 4; $yaw += (M_PI * 2) / 20, $y += 1 / 20){
                   $x = -sin($yaw) + $center->x;
                   $z = cos($yaw) + $center->z;
