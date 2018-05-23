@@ -74,7 +74,7 @@ class MainIC extends PluginBase implements Listener {
          $player->getLevel()->addSound(new EndermanTeleportSound($player));
          
          if($player->hasPermission("implactor.doublejump")) {
-			$player->setAllowFlight(true);
+         $player->setAllowFlight(true);
        }
      }
      
@@ -87,7 +87,7 @@ class MainIC extends PluginBase implements Listener {
 				$jump->y = 1.1;
 				$player->setMotion($jump);
 				$ev->setCancelled(true);
-				}
+                           }
 			}
 		}
          
@@ -163,6 +163,7 @@ class MainIC extends PluginBase implements Listener {
                        	   $sender->setGamemode(Player::CREATIVE);
                        }
                      }
+                   }
                      
                            if(strtolower($command->getName()) == "gms") {
                        	if($sender->hasPermission("implactor.gamemode")) {
@@ -170,13 +171,14 @@ class MainIC extends PluginBase implements Listener {
                               $sender->setGamemode(Player::SURVIVAL);   	
                        }
                      }
-                     
+                   }
                            if(strtolower($command->getName()) == "gma") {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::ADVENTURE);
                         }
                       }
+                    }
                        
                            if(strtolower($command->getName()) == "gmspc") {
                        	if($sender->hasPermission("implactor.gamemode")) {
