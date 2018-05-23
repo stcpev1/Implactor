@@ -11,7 +11,7 @@
 *                 |_|                               
 *
 * Implactor (1.4.x | 1.5.x)
-* A plugin with some features for Broken Edition!
+* A plugin with some features for Minecraft: Bedrock!
 * --- = ---
 *
 * Team: ImpladeDeveloped
