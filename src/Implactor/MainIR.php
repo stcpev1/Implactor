@@ -107,8 +107,8 @@ class MainIR extends PluginBase implements Listener {
                        if($sender->hasPermission("implactor.hub")) {
                           $pos = $sender->getLevel()->getSpawnLocation();
                           $sender->teleport($pos);
-                          $sender->addTitle("§7§l[§eHUB§7]§r", "§a (--§c(^_^)§a--)");
-                          $sender->sendMessage(IR::GRAY. "----------" .IR::WHITE. "\n Returning back to hub..." .IR::GRAY. "----------");
+                          $sender->addTitle("§7§l[§eHUB§7]§r", "§aReturning§f...");
+                          $sender->sendMessage(IR::GRAY. "----------" .IR::WHITE. "\n Returning to hub..." .IR::GRAY. "\n----------");
                           return true;
                      }
                  }
