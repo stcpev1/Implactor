@@ -51,7 +51,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use Implactor\particles\HubParticle;
 use Implactor\particles\DeathParticle;
 
-class MainIC extends PluginBase implements Listener {
+class MainIR extends PluginBase implements Listener {
 	
   public function onEnable(): void{
   	$this->getLogger()->info(IR::GREEN . "Implactor plugin is now online!");
