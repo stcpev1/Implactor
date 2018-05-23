@@ -37,7 +37,6 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
-use pocketmine\event\player\PlayerToggleFlightEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Location;
@@ -53,7 +52,7 @@ class MainIR extends PluginBase implements Listener {
 	
   public function onEnable(): void{
   	$this->getLogger()->info(IR::GREEN . "Implactor plugin is now online!");
-         $this->getServer()->getScheduler()->scheduleRepeatingTask(new HubParticle($this), 20);
+         $this->getServer()->getScheduler()->scheduleRepeatingTask(new HubParticle($this, $this), 20);
          $this->getServer()->getPluginManager()->registerEvents($this, $this);
        }
   
@@ -88,7 +87,6 @@ class MainIR extends PluginBase implements Listener {
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
-          $player->kill();
          }
          
           public function onRespawn(PlayerRespawnEvent $ev) : void{
@@ -104,7 +102,7 @@ class MainIR extends PluginBase implements Listener {
                           $pos = $sender->getLevel()->getSpawnLocation();
                           $sender->teleport($pos);
                           $sender->addTitle("§7§l[§eHUB§7]§r", "§aReturning§f...");
-                          $sender->sendMessage(IR::GRAY. "----------" .IR::WHITE. "\n Returning to hub..." .IR::GRAY. "\n----------");
+                          $sender->sendMessage(IR::GRAY. "-------" .IR::WHITE. "\n Returning to hub..." .IR::GRAY. "\n-------");
                           return true;
                      }
                  }
@@ -125,11 +123,11 @@ class MainIR extends PluginBase implements Listener {
                        	   if($sender->isOp()){
                                 if(!$sender->getAllowFlight()){
                                  $sender->setAllowFlight(true);
-                                 $sender->sendMessage("§8§l(§a!§8)§r §7Your fly ability has been §l§aENABLED§r§7!");
+                                 $sender->sendMessage("§8§l(§a!§8)§r §7You have §aenabled §7your fly ability!");
                               }else{
                                  $sender->setAllowFlight(false);
                                  $sender->setFlying(false);
-                                 $sender->sendMessage("§8§l(§c!§8)§r §7Your fly ability has been §l§cDISABLED§r§7!");
+                                 $sender->sendMessage("§8§l(§c!§8)§r §7You have §cdisabled §7your fly ability!");
                                  }
                                }else{
                                  $sender->sendMessage("§cYou have no permission allowed to use §fFly §ccommand!");
