@@ -34,7 +34,7 @@ permissions:
     default: true
   implactor.sethub:
     default: op
-  implactor.fly
+  implactor.fly:
     default: true
   implactor.gamemode:
     default: op
