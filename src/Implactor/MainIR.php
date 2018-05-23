@@ -64,32 +64,15 @@ class MainIR extends PluginBase implements Listener {
           $this->getServer()->shutdown();
         }
   
-         public function onLogin(PlayerLoginEvent $ev): void{
+         public function onPlayerLogin(PlayerLoginEvent $ev): void{
           $ev->getPlayer()->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());
 	}
 	
-	     public function onJoin(PlayerJoinEvent $ev): void{
-		 $player = $ev->getPlayer();
-         $ev->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
-         $player->getLevel()->addSound(new EndermanTeleportSound($player));
-         
-         if($player->hasPermission("implactor.doublejump")) {
-         $player->setAllowFlight(true);
+	     public function onPlayerJoin(PlayerJoinEvent $ev): void{
+             $player = $ev->getPlayer();
+             $player->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
+             $player->getLevel()->addSound(new EndermanTeleportSound($player));
        }
-     }
-     
-          public function setFlyOnJump(PlayerToggleFlightEvent $ev): void{
-		   $player = $ev->getPlayer();
-		    if($player->getLevel()->getFolderName() == $this->getServer()->getDefaultLevel()->getFolderName()) {
-			if($ev->isFlying() && $player->hasPermission("implactor.doublejump")) {
-				$player->setFlying(false);
-				$jump = $player->getLocation()->multiply(0, 0.001, 0);
-				$jump->y = 1.1;
-				$player->setMotion($jump);
-				$ev->setCancelled(true);
-                           }
-			}
-		}
          
           public function onHit(EntityDamageEvent $ev): void{
            if ($ev->getEntity() instanceof Player) {
@@ -99,9 +82,9 @@ class MainIR extends PluginBase implements Listener {
                 }
               }
      
-         public function onQuit(PlayerQuitEvent $ev): void{
+         public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
-         $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");
+         $player->setQuitMessage("§8[§c-§8] §c{$player->getName()}");
           $player->getLevel()->addSound(new DoorCrashSound($player));
       }
   
@@ -151,16 +134,20 @@ class MainIR extends PluginBase implements Listener {
                                  $sender->setAllowFlight(false);
                                  $sender->setFlying(false);
                                  $sender->sendMessage("§8§l(§c!§8)§r §7Your fly ability has been §l§cDISABLED§r§7!");
-                                 return true;
+                                 }
+                               }else{
+                                 $sender->sendMessage("§cYou have no permission allowed to use §fFly §ccommand!");
+                                 return false;
+                                }
+                                return true;
                               }
-                           }
-                        }
-                      }
-               
+                            }
+			      
                            if(strtolower($command->getName()) == "gmc") {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::CREATIVE);
+                           $sender->sendMessage("§eChanged your gamemode to §bCreative!");
                            return true;
                        }
                      }
@@ -169,7 +156,8 @@ class MainIR extends PluginBase implements Listener {
                            if(strtolower($command->getName()) == "gms") {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
-                              $sender->setGamemode(Player::SURVIVAL);   
+                              $sender->setGamemode(Player::SURVIVAL); 
+                              $sender->sendMessage("§eChanged your gamemode to §bSurvival!");
                               return true;
                        }
                      }
@@ -178,6 +166,7 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::ADVENTURE);
+                           $sender->sendMessage("§eChanged your gamemode to §bAdventure!");
                            return true;
                         }
                       }
@@ -187,6 +176,7 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                               $sender->setGamemode(Player::SPECTATOR);
+                              $sender->sendMessage("§eChanged your gamemode to §bSpectator!");
                               return true;
                               }
                             }
