@@ -32,28 +32,28 @@ commands:
     wild:
          description: Teleport to random wild spot!
          permission: implactor.wild
-     kill:
+    kill:
          description: Kill yourself using command!
          permission: implactor.kill
-     ping:
+    ping:
          description: Ping using command!
          permission: implactor.ping
-     clearitem:
+    clearitem:
          description: Clear your items from inventory!
          permission: implactor.clearinventory
-     cleararmor:
+    cleararmor:
          description: Clear your equipped armors!
          permission: implactor.cleararmor
-     clearall:
+    clearall:
          description: Clear all equipped armors or items from your inventory and body!
          permission: implactor.clearall
-      heal:
+    heal:
          description: Heal yourself when on emergency!
          permission: implactor.heal
-     feed:
+    feed:
          description: Feed yourself when on hunger!
          permission: implactor.feed
-     ihelp:
+    ihelp:
          description: Implactor Command Info!
          permission: implactor.command.help
     iabout:
