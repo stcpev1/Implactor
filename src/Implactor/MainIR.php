@@ -107,7 +107,7 @@ class MainIC extends PluginBase implements Listener {
   
   
           public function onDeath(PlayerDeathEvent $ev): void{
-          $player = ev->getPlayer();
+          $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
           $player->kill();
          }
