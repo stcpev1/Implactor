@@ -161,6 +161,7 @@ class MainIC extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::CREATIVE);
+                           return true;
                        }
                      }
                    }
@@ -168,7 +169,8 @@ class MainIC extends PluginBase implements Listener {
                            if(strtolower($command->getName()) == "gms") {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
-                              $sender->setGamemode(Player::SURVIVAL);   	
+                              $sender->setGamemode(Player::SURVIVAL);   
+                              return true;
                        }
                      }
                    }
@@ -176,6 +178,7 @@ class MainIC extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::ADVENTURE);
+                           return true;
                         }
                       }
                     }
@@ -184,6 +187,7 @@ class MainIC extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                               $sender->setGamemode(Player::SPECTATOR);
+                              return true;
                               }
                             }
                           }
