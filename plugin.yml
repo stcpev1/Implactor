@@ -6,35 +6,23 @@ author: Zadezter
 
 commands:
     hub:
-        description: Return To Hub!
+        description: Return To Hub
         permission: implactor.hub
     sethub:
-         description: Set a main hub to location point!
+         description: Set a main hub to location point
          permission: implactor.sethub
-     fly:
-         description: Fly ability on command!
+    fly:
+         description: Fly ability on command
          permission: implactor.fly
-     gmc:
-         description: Change your gamemode to Creative!
+    gmc:
+         description: Change your gamemode to Creative
          permission: implactor.gamemode
-     gms:
-         description: Change your gamemode to Survival!
+    gms:
+         description: Change your gamemode to Survival
          permission: implactor.gamemode
-     gma:
-         description: Change your gamemode to Adventure!
+    gma:
+         description: Change your gamemode to Adventure
          permission: implactor.gamemode
-     gmspc:
-         description: Change your gamemode to Spectator!
+    gmspc:
+         description: Change your gamemode to Spectator
          permission: implactor.gamemode
-        
-permissions:
-  implactor.hub:
-    default: true
-  implactor.doublejump:
-    default: true
-  implactor.sethub:
-    default: op
-  implactor.fly:
-    default: true
-  implactor.gamemode:
-    default: op
