@@ -6,23 +6,60 @@ author: Zadezter
 
 commands:
     hub:
-        description: Return To Hub
+        description: Teleport/Return to Hub!
         permission: implactor.hub
     sethub:
-         description: Set a main hub to location point
+         description: Set a main hub location point!
          permission: implactor.sethub
     fly:
-         description: Fly ability on command
+         description: Turn on/off the fly ability mode!
          permission: implactor.fly
     gmc:
-         description: Change your gamemode to Creative
+         description: Change your gamemode to Creative mode!
          permission: implactor.gamemode
     gms:
-         description: Change your gamemode to Survival
+         description: Change your gamemode to Survival mode!
          permission: implactor.gamemode
     gma:
-         description: Change your gamemode to Adventure
+         description: Change your gamemode to Adventure mode!
          permission: implactor.gamemode
     gmspc:
-         description: Change your gamemode to Spectator
+         description: Change your gamemode to Spectator mode!
          permission: implactor.gamemode
+    nick:
+         description: Set your nickname or default!
+         permission: implactor.nick
+    wild:
+         description: Teleport to random wild spot!
+         permission: implactor.wild
+     kill:
+         description: Kill yourself using command!
+         permission: implactor.kill
+     ping:
+         description: Ping using command!
+         permission: implactor.ping
+     clearitem:
+         description: Clear your items from inventory!
+         permission: implactor.clearinventory
+     cleararmor:
+         description: Clear your equipped armors!
+         permission: implactor.cleararmor
+     clearall:
+         description: Clear all equipped armors or items from your inventory and body!
+         permission: implactor.clearall
+      heal:
+         description: Heal yourself when on emergency!
+         permission: implactor.heal
+     feed:
+         description: Feed yourself when on hunger!
+         permission: implactor.feed
+     ihelp:
+         description: Implactor Command Info!
+         permission: implactor.command.help
+    iabout:
+         description: About Implactor plugin!
+         permission: implactor.command.about
+         
+         
+         
+         
