@@ -204,7 +204,7 @@ class MainIR extends PluginBase implements Listener {
                                              $y = $sender->getLevel()->getHighestBlockAt($x, $z) + 1;
                                              $sender->teleport(new Position($x, $y, $z, $sender->getLevel()));
                                              $sender->addTitle("§7§l[§dWILD§7]§r", "§fRandom Teleporting...");
-                                             $sender->sendMessage("§7-------\n §cTeleporting to wild... §7\n-------");
+                                             $sender->sendMessage("§7-------\n §cWild randomly\n §cteleporting... §7\n-------");
                                              return true;
                                            }
                                         }
@@ -221,8 +221,8 @@ class MainIR extends PluginBase implements Listener {
                                       
                                     if(strtolower($command->getName()) == "ping") {
                                      if($sender->hasPermission("implactor.ping")){
-                                     $sender->sendMessage($sender->getPlayer(). "'s §aping Status§c:");
-                                     $sender->sendMessage("§b" . $sender->getPing() . "§f ms §6on your connection§c!");
+                                     $sender->sendMessage($sender->getPlayer()->getName(). "§aping status§c:");
+                                     $sender->sendMessage("§b" . $sender->getPing() . "§fms §6on your connection§c!");
                                      return true;
                                   }
                               }
@@ -241,7 +241,7 @@ class MainIR extends PluginBase implements Listener {
                                      if($sender->hasPermission("implactor.cleararmor")){
                                      if($sender->isOp()){
                                     $sender->getArmorInventory()->clearAll();
-                                    $sender->sendMessage("§eYour armors §awas cleared successfully from your body!");
+                                    $sender->sendMessage("§eAll armors §awas cleared successfully from your body!");
                                     return true;
                                     }
                                   }
@@ -252,7 +252,7 @@ class MainIR extends PluginBase implements Listener {
                                      if($sender->isOp()){	                                              
                                     $sender->getInventory()->clearAll();
                                     $sender->getArmorInventory()->clearAll();
-                                    $sender->sendMessage("§aAll §eitems §aand §earmors §awas cleared successfully from your inventory and body!");
+                                    $sender->sendMessage("§aAll §eitems §aand §earmors §awas cleared successfully from yourself!");
                                     return true;
                                     }
                                  }
@@ -284,8 +284,8 @@ class MainIR extends PluginBase implements Listener {
                                             $sender->sendMessage("§b--( §eImplactor §aHelp §b)--");
                                             $sender->sendMessage("§e/ihelp §9- §fImplactor Command List!");
                                             $sender->sendMessage("§e/iabout §9- §fAbout Implactor plugin!");
-                                            $sender->sendMessage("§e/ping §9- §fPong?");
-                                            $sender->sendMessage("§e/feed §9- §dFeed yourself when on hunger!");
+                                            $sender->sendMessage("§e/ping §9- §fCheck your ping status on server!");
+                                            $sender->sendMessage("§e/feed §9- §fFeed yourself when on hunger!");
                                             $sender->sendMessage("§e/heal §9- §fHeal yourself when on emergency!");
                                             $sender->sendMessage("§e/gms §9- §fChange your gamemode to §cSurvival §fmode!");
                                             $sender->sendMessage("§e/gmc §9- §fChange your gamemode to §aCreative §fmode!");
@@ -306,9 +306,9 @@ class MainIR extends PluginBase implements Listener {
                                       
                                            if(strtolower($command->getName()) == "iabout") {
                                            if($sender->hasPermission("implactor.command.about")){
-                                             $sender->sendMessage("§b--§a[§dImplactor §a| §bAbout §a]§b--");
+                                             $sender->sendMessage("§b--§a[§d Implactor §a| §bAbout §a]§b--");
                                              $sender->sendMessage("§aA plugin with having some features!");
-                                             $sender->sendMessage(" §eMade by Zadezter \n §fCreated on §c23 May 2018");
+                                             $sender->sendMessage("- §eMade by Zadezter§r \n- §fCreated on §c23 May 2018");
                                              return true;
                                              }
                                            }
