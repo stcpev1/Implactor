@@ -1,5 +1,5 @@
 name: Implactor
-version: IR-1.0
+version: IR-1.1
 api: [3.0.0-ALPHA12]
 main: Implactor\MainIR
 author: Zadezter
@@ -54,7 +54,7 @@ commands:
          description: Feed yourself when on hunger!
          permission: implactor.feed
     ihelp:
-         description: Implactor Command Info!
+         description: Implactor command info list!
          permission: implactor.command.help
     iabout:
          description: About Implactor plugin!
