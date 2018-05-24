@@ -316,7 +316,9 @@ class MainIR extends PluginBase implements Listener {
                                                $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 4 §b)--");
                                                $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
                                                $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
-                                               $sender->sendMessage("§e/nick §9- §fSet your nickname or default!");
+                                               $sender->sendMessage("§e/nick §9- §fSet your nickname or default!"); 
+                                               return true;
+                                               break;
                                                 }
                                               }
                                               return false;
