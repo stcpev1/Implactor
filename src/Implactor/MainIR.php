@@ -221,8 +221,8 @@ class MainIR extends PluginBase implements Listener {
                                       
                                     if(strtolower($command->getName()) == "ping") {
                                      if($sender->hasPermission("implactor.ping")){
-                                     $sender->sendMessage("§aPong§c!");
-                                     $sender->sendMessage("§b" . $sender->getPing() . "§fms");
+                                     $sender->sendMessage("§aPing Status§c:");
+                                     $sender->sendMessage("§b" . $sender->getPing() . "§f ms §6on connection!");
                                      return true;
                                   }
                               }
@@ -241,7 +241,7 @@ class MainIR extends PluginBase implements Listener {
                                      if($sender->hasPermission("implactor.cleararmor")){
                                      if($sender->isOp()){
                                     $sender->getArmorInventory()->clearAll();
-                                    $sender->sendMessage("§eArmors §awas cleared successfully from your body!");
+                                    $sender->sendMessage("§eYour armors §awas cleared successfully from your body!");
                                     return true;
                                     }
                                   }
@@ -252,7 +252,7 @@ class MainIR extends PluginBase implements Listener {
                                      if($sender->isOp()){	                                              
                                     $sender->getInventory()->clearAll();
                                     $sender->getArmorInventory()->clearAll();
-                                    $sender->sendMessage("§aAll §eitems §a+ §earmors §awas cleared successfully from your inventory and body!");
+                                    $sender->sendMessage("§aAll §eitems §aand §earmors §awas cleared successfully from your inventory and body!");
                                     return true;
                                     }
                                  }
@@ -263,7 +263,7 @@ class MainIR extends PluginBase implements Listener {
                                      	if($sender->isOp()){
                                      	$sender->setHealth(20);
                                          $sender->setMaxHealth(20);
-                                         $sender->sendMessage("§aYour life point has been fully §ehealed!");
+                                         $sender->sendMessage("§aYour life points has been fully §ehealed!");
                                           return true;
                                      }
                                    }
@@ -273,7 +273,7 @@ class MainIR extends PluginBase implements Listener {
                                      if($sender->hasPermission("implactor.feed")){
                                      	if($sender->isOp()){
                                      	$sender->setFood(20);
-                                         $sender->sendMessage("§aYour hunger has been fully §efilled!");
+                                         $sender->sendMessage("§aYour hunger bar has been fully §efilled!");
                                          return true;
                                      }
                                   }
@@ -281,7 +281,7 @@ class MainIR extends PluginBase implements Listener {
                                 
                                     if(strtolower($command->getName()) == "ihelp") {
                                      if($sender->hasPermission("implactor.command.help")){
-                                            $sender->sendMessage("§b--( §eImplactor §aHelp )--");
+                                            $sender->sendMessage("§b--( §eImplactor §aHelp §b)--");
                                             $sender->sendMessage("§e/ihelp §9- §fImplactor Command List!");
                                             $sender->sendMessage("§e/iabout §9- §fAbout Implactor plugin!");
                                             $sender->sendMessage("§e/ping §9- §fPong?");
@@ -296,7 +296,7 @@ class MainIR extends PluginBase implements Listener {
                                             $sender->sendMessage("§e/fly §9- §fTurn on/off the fly ability!");
                                             $sender->sendMessage("§e/kill §9- §fKill yourself!");
                                             $sender->sendMessage("§e/wild §9- §fTeleport to the wild spot!");
-                                            $sender->sendMessage("§e/clearitems §9- §fClear your items from your inventory!");
+                                            $sender->sendMessage("§e/clearitem §9- §fClear your items from your inventory!");
                                             $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
                                             $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
                                             $sender->sendMessage("§e/nick §9- §fSet your nickname or default!"); 
@@ -308,8 +308,7 @@ class MainIR extends PluginBase implements Listener {
                                            if($sender->hasPermission("implactor.command.about")){
                                              $sender->sendMessage("§b--§a[§dImplactor §a| §bAbout §a]§b--");
                                              $sender->sendMessage("§aA plugin with having some features!");
-                                             $sender->sendMessage("\n§eMade by Zadezter");
-                                             $sender->sendMessage("§fwith his team, §bImpladeDeveloped!");
+                                             $sender->sendMessage("\§eMade by Zadezter \n §fCreated on §c23 May 2018");
                                              return true;
                                              }
                                            }
