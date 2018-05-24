@@ -196,7 +196,6 @@ class MainIR extends PluginBase implements Listener {
                               }
                               return true;
                            }
-                  }
            
                                            if(strtolower($command->getName()) == "wild") {
                                              if($sender->hasPermission("implactor.wild")){
