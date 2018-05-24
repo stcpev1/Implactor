@@ -60,34 +60,34 @@ commands:
          description: About Implactor plugin!
          permission: implactor.command.about
 permissions:
-          implactor.command.about:
-          default: true
-          implactor.command.help:
-          default: true
-          implactor.hub:
-          default: true
-          implactor.sethub:
-          default: op
-          implactor.wild:
-          default: true
-          implactor.clearinventory:
-          default: op
-          implactor.cleararmor:
-          default: op
-          implactor.clearall:
-          default: op
-          implactor.fly:
-          default: op
-          implactor.gamemode:
-          default: op
-          implactor.feed:
-          default: op
-          implactor.heal:
-          default.op
-          implactor.kill:
-          default: op
-          implactor.ping:
-          default: true
+    implactor.command.about:
+    default: true
+    implactor.command.help:
+    default: true
+    implactor.hub:
+    default: true
+    implactor.sethub:
+    default: op
+    implactor.wild:
+    default: true
+    implactor.clearinventory:
+    default: op
+    implactor.cleararmor:
+    default: op
+    implactor.clearall:
+    default: op
+    implactor.fly:
+    default: op
+    implactor.gamemode:
+    default: op
+    implactor.feed:
+    default: op
+    implactor.heal:
+    default.op
+    implactor.kill:
+    default: op
+    implactor.ping:
+    default: true
           
          
          
