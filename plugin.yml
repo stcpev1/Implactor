@@ -83,7 +83,7 @@ permissions:
     implactor.feed:
     default: op
     implactor.heal:
-    default.op
+    default: op
     implactor.kill:
     default: op
     implactor.ping:
