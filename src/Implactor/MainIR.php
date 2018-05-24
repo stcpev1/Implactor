@@ -253,7 +253,7 @@ class MainIR extends PluginBase implements Listener {
                                      if($sender->isOp()){	                                              
                                     $sender->getInventory()->clearAll();
                                     $sender->getArmorInventory()->clearAll();
-                                    $sender->sendMessage("§aAll §eitems §aand §earmors §awas cleared successfully from your inventory and body!");
+                                    $sender->sendMessage("§aAll §eitems §a+ §earmors §awas cleared successfully from your inventory and body!");
                                     return true;
                                     }
                                  }
