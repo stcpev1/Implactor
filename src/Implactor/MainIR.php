@@ -264,6 +264,7 @@ class MainIR extends PluginBase implements Listener {
                                      	$sender->setHealth(20);
                                          $sender->setMaxHealth(20);
                                          $sender->sendMessage("§aYour life point has been fully §ehealed!");
+                                          return true;
                                      }
                                    }
                                  }
@@ -273,56 +274,35 @@ class MainIR extends PluginBase implements Listener {
                                      	if($sender->isOp()){
                                      	$sender->setFood(20);
                                          $sender->sendMessage("§aYour hunger has been fully §efilled!");
+                                         return true;
                                      }
                                   }
                                 }
                                 
                                     if(strtolower($command->getName()) == "ihelp") {
                                      if($sender->hasPermission("implactor.command.help")){
-                                     	if(isset($args[0])){
-					  switch($args[0]){
-                                            case "1":
-                                            $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 1 §b)--");
+                                            $sender->sendMessage("§b--( §eImplactor §aHelp )--");
                                             $sender->sendMessage("§e/ihelp §9- §fImplactor Command List!");
                                             $sender->sendMessage("§e/iabout §9- §fAbout Implactor plugin!");
                                             $sender->sendMessage("§e/ping §9- §fPong?");
                                             $sender->sendMessage("§e/feed §9- §dFeed yourself when on hunger!");
                                             $sender->sendMessage("§e/heal §9- §fHeal yourself when on emergency!");
-                                            return true;
-                                            break;
-                                            
-                                            case "2":
-                                            $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 2 §b)--");
                                             $sender->sendMessage("§e/gms §9- §fChange your gamemode to §cSurvival §fmode!");
                                             $sender->sendMessage("§e/gmc §9- §fChange your gamemode to §aCreative §fmode!");
                                             $sender->sendMessage("§e/gma §9- §fChange your gamemode to §cAdventure §fmode!");
                                             $sender->sendMessage("§e/gmspc §9- §fChange your gamemode to §bSpectator §fmode!");
                                             $sender->sendMessage("§e/hub §9- §fTeleport/Return To Hub!");
+                                            $sender->sendMessage("§e/sethub §9- §fSet the main hub location point!");
+                                            $sender->sendMessage("§e/fly §9- §fTurn on/off the fly ability!");
+                                            $sender->sendMessage("§e/kill §9- §fKill yourself!");
+                                            $sender->sendMessage("§e/wild §9- §fTeleport to the wild spot!");
+                                            $sender->sendMessage("§e/clearitems §9- §fClear your items from your inventory!");
+                                            $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
+                                            $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
+                                            $sender->sendMessage("§e/nick §9- §fSet your nickname or default!"); 
                                             return true;
-                                            break;
-                                            
-                                            case "3":
-                                             $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 3 §b)--");
-                                             $sender->sendMessage("§e/sethub §9- §fSet the main hub location point!");
-                                             $sender->sendMessage("§e/fly §9- §fTurn on/off the fly ability!");
-                                             $sender->sendMessage("§e/kill §9- §fKill yourself!");
-                                             $sender->sendMessage("§e/wild §9- §fTeleport to the wild spot!");
-                                             $sender->sendMessage("§e/clearitems §9- §fClear your items from your inventory!");
-                                             return true;
-                                              break;
-                                              
-                                              case "4":
-                                               $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 4 §b)--");
-                                               $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
-                                               $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
-                                               $sender->sendMessage("§e/nick §9- §fSet your nickname or default!"); 
-                                               return true;
-                                               break;
-                                                }
-                                              }
-                                              return false;
-                                            }
-                                        }
+                                           }
+                                         }                                             
                                       
                                            if(strtolower($command->getName()) == "iabout") {
                                            if($sender->hasPermission("implactor.command.about")){
@@ -330,6 +310,7 @@ class MainIR extends PluginBase implements Listener {
                                              $sender->sendMessage("§aA plugin with having some features!");
                                              $sender->sendMessage("\n§eMade by Zadezter");
                                              $sender->sendMessage("§fwith his team, §bImpladeDeveloped!");
+                                             return true;
                                              }
                                            }
                                          }
