@@ -308,7 +308,7 @@ class MainIR extends PluginBase implements Listener {
                                              $sender->sendMessage("§e/kill §9- §fKill yourself!");
                                              $sender->sendMessage("§e/wild §9- §fTeleport to the wild spot!");
                                              $sender->sendMessage("§e/clearitems §9- §fClear your items from your inventory!");
-                                             return true
+                                             return true;
                                               break;
                                               
                                               case "4":
