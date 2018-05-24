@@ -112,7 +112,7 @@ class MainIR extends PluginBase implements Listener {
                        	   if($sender->isOp()){
                        	  $sender->getLevel()->setSpawnLocation($sender);
                              $sender->getServer()->setDefaultLevel($sender->getLevel());
-                             $sender->sendMessage(IR::YELLOW . "Set the main hub successfully!");
+                             $sender->sendMessage(IR::YELLOW . "You have successfully set a main hub!");
                              return true;
                          }
                       }
@@ -141,7 +141,7 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::CREATIVE);
-                           $sender->sendMessage("§eChanged your gamemode to §bCreative!");
+                           $sender->sendMessage("§eChanged your gamemode to §aCreative §emode!");
                            return true;
                        }
                      }
@@ -151,7 +151,7 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                               $sender->setGamemode(Player::SURVIVAL); 
-                              $sender->sendMessage("§eChanged your gamemode to §bSurvival!");
+                              $sender->sendMessage("§eChanged your gamemode to §cSurvival §emode!");
                               return true;
                        }
                      }
@@ -160,7 +160,7 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                        	   $sender->setGamemode(Player::ADVENTURE);
-                           $sender->sendMessage("§eChanged your gamemode to §bAdventure!");
+                           $sender->sendMessage("§eChanged your gamemode to §cAdventure §emode!");
                            return true;
                         }
                       }
@@ -170,11 +170,170 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                        	   if($sender->isOp()){
                               $sender->setGamemode(Player::SPECTATOR);
-                              $sender->sendMessage("§eChanged your gamemode to §bSpectator!");
+                              $sender->sendMessage("§eChanged your gamemode to §bSpectator §emode!");
                               return true;
                               }
                             }
                           }
-                        }
-                     }
-            
+                          
+                           if(strtolower($command->getName()) == "nick") {
+                            if($sender->hasPermission("implactor.nick")){
+                            if(count($args) > 0){
+                            if($args[0] == "off"){
+                            $sender->setDisplayName($sender->getName());
+                             $sender->sendMessage("§l§8(§c!§8)§r §7You have set your nickname as §l§cdefault§r§7!");
+                          }else{
+                              $sender->setDisplayName($args[0]);
+                            $sender->sendMessage("§l§8(§a!§8)§r §7You have set your nickname as §l§a" . $args[0] . "§7!");
+                             }
+                         }else{
+                            $sender->sendMessage("§l§8(§6!§8)§r §l§cCommand usage§8:§r§7 /nick <name|off>");
+                            return false;
+                             }
+                          }else{
+                             $sender->sendMessage("§cYou have no permission allowed to use §bNick §ccommand!");
+                              return false;
+                              }
+                              return true;
+                           }
+                  }
+           
+                                           if(strtolower($command->getName()) == "wild") {
+                                             if($sender->hasPermission("implactor.wild")){
+                                             $x = mt_rand(1, 999);
+                                             $z = mt_rand(1, 999);
+                                             $y = $sender->getLevel()->getHighestBlockAt($x, $z) + 1;
+                                             $sender->teleport(new Position($x, $y, $z, $sender->getLevel()));
+                                             $sender->addTitle("§7§l[§dWILD§7]§r", "§fRandom Teleporting...");
+                                             $sender->sendMessage("§7-------\n §cTeleporting to wild... §7\n-------");
+                                             return true;
+                                           }
+                                        }
+                                        
+                                            if(strtolower($command->getName()) == "kill") {
+                                             if($sender->hasPermission("implactor.kill")){
+                                            if($sender->isOp()){
+                                            $sender->setHealth(0);
+                                            $sender->sendMessage("§cMove like pain, be steady like a death!");
+                                            return true;
+                                           }
+                                         }
+                                      }
+                                      
+                                    if(strtolower($command->getName()) == "ping") {
+                                     if($sender->hasPermission("implactor.ping")){
+                                     $sender->sendMessage("§aPong§c!");
+                                     $sender->sendMessage("§b" . $sender->getPing() . "§fms");
+                                     return true;
+                                  }
+                              }
+                              
+                              if(strtolower($command->getName()) == "clearitem") {
+                                     if($sender->hasPermission("implactor.clearinventory")){
+                                     if($sender->isOp()){
+                                    $sender->getInventory()->clearAll();
+                                    $sender->sendMessage("§aAll §eitems §awas cleared successfully from your inventory!");
+                                    return true;
+                                    }
+                                 }
+                               }
+                                 
+                                 if(strtolower($command->getName()) == "cleararmor") {
+                                     if($sender->hasPermission("implactor.cleararmor")){
+                                     if($sender->isOp()){
+                                    $sender->getArmorInventory()->clearAll();
+                                    $sender->sendMessage("§eArmors §awas cleared successfully from your body!");
+                                    return true;
+                                    }
+                                  }
+                                }
+                                    
+                                    if(strtolower($command->getName()) == "clearall") {
+                                     if($sender->hasPermission("implactor.clearall")){
+                                     if($sender->isOp()){	                                              
+                                    $sender->getInventory()->clearAll();
+                                    $sender->getArmorInventory()->clearAll();
+                                    $sender->sendMessage("§aAll §eitems §aand §earmors §awas cleared successfully from your inventory and body!");
+                                    return true;
+                                    }
+                                 }
+                               }
+                                     
+                                     if(strtolower($command->getName()) == "heal") {
+                                     if($sender->hasPermission("implactor.heal")){
+                                     	if($sender->isOp()){
+                                     	$sender->setHealth(20);
+                                         $sender->setMaxHealth(20);
+                                         $sender->sendMessage("§aYour life point has been fully §ehealed!");
+                                     }
+                                   }
+                                 }
+                                   
+                                     if(strtolower($command->getName()) == "feed") {
+                                     if($sender->hasPermission("implactor.feed")){
+                                     	if($sender->isOp()){
+                                     	$sender->setFood(20);
+                                         $sender->sendMessage("§aYour hunger has been fully §efilled!");
+                                     }
+                                  }
+                                }
+                                
+                                    if(strtolower($command->getName()) == "ihelp") {
+                                     if($sender->hasPermission("implactor.command.help")){
+                                     	if(isset($args[0])){
+					                         switch($args[0]){
+                                            case "1":
+                                            $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 1 §b)--");
+                                            $sender->sendMessage("§e/ihelp §9- §fImplactor Command List!");
+                                            $sender->sendMessage("§e/iabout §9- §fAbout Implactor plugin!");
+                                            $sender->sendMessage("§e/ping §9- §fPong?");
+                                            $sender->sendMessage("§e/feed §9- §dFeed yourself when on hunger!");
+                                            $sender->sendMessage("§e/heal §9- §fHeal yourself when on emergency!");
+                                            return true;
+                                            break;
+                                            
+                                            case "2":
+                                            $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 2 §b)--");
+                                            $sender->sendMessage("§e/gms §9- §fChange your gamemode to §cSurvival §fmode!");
+                                            $sender->sendMessage("§e/gmc §9- §fChange your gamemode to §aCreative §fmode!");
+                                            $sender->sendMessage("§e/gma §9- §fChange your gamemode to §cAdventure §fmode!");
+                                            $sender->sendMessage("§e/gmspc §9- §fChange your gamemode to §bSpectator §fmode!");
+                                            $sender->sendMessage("§e/hub §9- §fTeleport/Return To Hub!");
+                                            return true;
+                                            break;
+                                            
+                                            case "3":
+                                             $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 3 §b)--");
+                                             $sender->sendMessage("§e/sethub §9- §fSet the main hub location point!");
+                                             $sender->sendMessage("§e/fly §9- §fTurn on/off the fly ability!");
+                                             $sender->sendMessage("§e/kill §9- §fKill yourself!");
+                                             $sender->sendMessage("§e/wild §9- §fTeleport to the wild spot!");
+                                             $sender->sendMessage("§e/clearitems §9- §fClear your items from your inventory!");
+                                             return true
+                                              break;
+                                              
+                                              case "4":
+                                               $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 4 §b)--");
+                                               $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
+                                               $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
+                                               $sender->sendMessage("§e/nick §9- §fSet your nickname or default!");
+                                                }
+                                              }
+                                              return false;
+                                            }
+                                        }
+                                      
+                                           if(strtolower($command->getName()) == "iabout") {
+                                           if($sender->hasPermission("implactor.command.about")){
+                                             $sender->sendMessage("§b--§a[§dImplactor §a| §bAbout §a]§b--");
+                                             $sender->sendMessage("§aA plugin with having some features!");
+                                             $sender->sendMessage("\n§eMade by Zadezter");
+                                             $sender->sendMessage("§fwith his team, §bImpladeDeveloped!");
+                                             }
+                                           }
+                                         }
+                                       }
+                                
+                                     
+                               
+    
