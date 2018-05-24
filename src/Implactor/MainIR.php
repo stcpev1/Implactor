@@ -280,7 +280,7 @@ class MainIR extends PluginBase implements Listener {
                                     if(strtolower($command->getName()) == "ihelp") {
                                      if($sender->hasPermission("implactor.command.help")){
                                      	if(isset($args[0])){
-					                         switch($args[0]){
+					  switch($args[0]){
                                             case "1":
                                             $sender->sendMessage("§b--( §eImplactor §aHelp §b| §cNo. 1 §b)--");
                                             $sender->sendMessage("§e/ihelp §9- §fImplactor Command List!");
