@@ -308,7 +308,7 @@ class MainIR extends PluginBase implements Listener {
                                            if($sender->hasPermission("implactor.command.about")){
                                              $sender->sendMessage("§b--§a[§dImplactor §a| §bAbout §a]§b--");
                                              $sender->sendMessage("§aA plugin with having some features!");
-                                             $sender->sendMessage("\§eMade by Zadezter \n §fCreated on §c23 May 2018");
+                                             $sender->sendMessage(" §eMade by Zadezter \n §fCreated on §c23 May 2018");
                                              return true;
                                              }
                                            }
