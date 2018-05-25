@@ -47,6 +47,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\level\Location;
 use pocketmine\level\Position;
 use pocketmine\entity\Entity;
+use pocketmine\entity\EffectInstance;
 use pocketmine\math\Vector3;
 use pocketmine\level\particle\DestroyBlockParticle as FrostBloodParticle;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -372,14 +373,11 @@ class MainIR extends PluginBase implements Listener {
                                              return true;
                                              }
                                            }
-                                         }                                       
-                               
+                                          }
+			      
                                            if(strtolower($command->getName() === "vanish"){
                                             if($sender instanceof Player){
-                                            $sender->sendMessage("This command is only works in-game server!");
-                                            return false;
-                                          }
-                                            if(!$sender->hasPermission("implactor.vanish")){
+                                            if($sender->hasPermission("implactor.vanish")){
                                             $sender->sendMessage("§cYou have no permission allowed to use §aVan§fish §ccommand§e!");
                                             return false;
                                         }
@@ -419,3 +417,5 @@ class MainIR extends PluginBase implements Listener {
                                  }
                                  return true;
                                }
+                            }
+                          }
