@@ -397,9 +397,8 @@ class MainIR extends PluginBase implements Listener {
                     $sender->setNameTagVisible(true);
                     $sender->sendMessage("§bYou are no longer §6vanished §bplayer§e!");
                 }
-                return false;
+                return true;
                }
              }
           }
         }
-      }
