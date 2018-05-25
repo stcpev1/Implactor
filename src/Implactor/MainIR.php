@@ -50,6 +50,8 @@ use pocketmine\level\sound\AnvilBreakSound;
 
 use Implactor\particles\HubParticle;
 use Implactor\particles\DeathParticle;
+use Implactor\anti\AntiAdvertising;
+use Implactor\anti\AntiSwearing;
 
 class MainIR extends PluginBase implements Listener {
 	
@@ -61,6 +63,8 @@ class MainIR extends PluginBase implements Listener {
   	$this->getLogger()->info(IR::GREEN . "Implactor plugin is now online!");
          $this->getServer()->getScheduler()->scheduleRepeatingTask(new HubParticle($this, $this), 20);
          $this->getServer()->getPluginManager()->registerEvents($this, $this);
+         $this->getServer()->getPluginManager()->registerEvents(new AntiAdvertising($this), $this);
+         $this->getServer()->getPluginManager()->registerEvents(new AntiSwearing($this), $this);
        }
   
          public function onDisable(): void{
