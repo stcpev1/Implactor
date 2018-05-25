@@ -374,46 +374,5 @@ class MainIR extends PluginBase implements Listener {
                                              }
                                            }
                                           }
-			      
-                                           if(strtolower($command->getName() === "vanish"){
-                                            if($sender instanceof Player){
-                                            if($sender->hasPermission("implactor.vanish")){
-                                         if(empty($args[0])){
-                                         if(!in_array($sender->getName(), $this->vanish)){
-                                         $this->vanish[] = $sender->getName();
-                                         $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
-                                         $sender->setNameTagVisible(false);
-                                         $sender->sendMessage("§eYou are now §avanished §eplayer!");
-                                       }elseif(in_array($sender->getName(), $this->vanish)){
-                                         unset($this->vanish[array_search($sender->getName(), $this->vanish)]);
-                                         $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
-                                         $sender->setNameTagVisible(true);
-                                         $sender->sendMessage("§eYou are no longer §cvanished §eplayer!");
+			                 }
                                         }
-                                         return false;
-                                      }
-                                     if($this->getServer()->getPlayer($args[0])){
-                                     $player = $this->getServer()->getPlayer($args[0]);
-                                    if(!in_array($player->getName(), $this->vanish)){
-                                     $this->vanish[] = $player->getName();
-                                     $player->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
-                                     $player->setNameTagVisible(false);
-                                     $player->sendMessage("§eYou are now §avanished §eplayer!");
-                                     $sender->sendMessage("§eYou have vanished§r ". $player->getName() ."");
-                                   }elseif(in_array($player->getName(), $this->vanish)){
-                                     unset($this->vanish[array_search($player->getName(), $this->vanish)]);
-                                     $player->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
-                                     $player->setNameTagVisible(true);
-                                     $player->sendMessage("§eYou are no longer §cvanished §eplayer!");
-                                     $sender->sendMessage("§eYou have un-vanished§r ". $player->getName() ."");
-                                    }
-                                 }else{
-                                     $sender->sendMessage("§bPlayer couldn't be found to §cvanish §bthem!");
-                                     return false;
-                                    }
-                                 }
-                                 return true;
-                               }
-                            }
-                          }
-                        }
