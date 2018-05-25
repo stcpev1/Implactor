@@ -376,17 +376,12 @@ class MainIR extends PluginBase implements Listener {
                                           }
 			                 
 			      
-			      if(strtolower($command->getName() === "vanish"){
-                              if($sender instanceof Player){
-                               $sender->sendMessage("Use this command in-game");
-                              return false;
-                          }
+			
+		if(strtolower($command->getName() === "vanish"){
+                         if($sender instanceof Player){
                          if($sender->hasPermission("implactor.vanish")){
-                         $sender->sendMessage("§cYou have no permission allowed to use §bVanish §ccommand§e!");
-                        return false;
-                      }
                      if(empty($args[0])){
-                if(!in_array($sender->getName(), $this->vanish)){
+                     if(!in_array($sender->getName(), $this->vanish)){
                     $this->vanish[] = $sender->getName();
                     $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
                     $sender->setNameTagVisible(false);
@@ -402,3 +397,4 @@ class MainIR extends PluginBase implements Listener {
              }
           }
         }
+     }
