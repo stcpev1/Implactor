@@ -1,5 +1,5 @@
 name: Implactor
-version: IR-1.1
+version: IR-1.2
 api: [3.0.0-ALPHA12]
 main: Implactor\MainIR
 author: Zadezter
@@ -107,4 +107,7 @@ permissions:
      default: true
     implactor.nick:
      description: "Allow players to nick themselves"
+     default: true
+    implactor.anti:
+     description: "Have access with anti advertising/swearing to warn players"
      default: true
