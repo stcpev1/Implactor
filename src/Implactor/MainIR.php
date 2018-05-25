@@ -44,11 +44,18 @@ use pocketmine\level\Position;
 use pocketmine\level\particle\DestroyBlockParticle as FrostBloodParticle;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\level\sound\EndermanTeleportSound;
+use pocketmine\level\sound\DoorCrashSound;
+use pocketmine\level\sound\AnvilBreakSound;
 
 use Implactor\particles\HubParticle;
 use Implactor\particles\DeathParticle;
 
 class MainIR extends PluginBase implements Listener {
+	
+  public function onLoad(): void{
+   $this->getLogger()->info(IR::AQUA . "Loading all resources and codes on Implactor plugin...");
+  }
 	
   public function onEnable(): void{
   	$this->getLogger()->info(IR::GREEN . "Implactor plugin is now online!");
@@ -68,6 +75,7 @@ class MainIR extends PluginBase implements Listener {
 	     public function onPlayerJoin(PlayerJoinEvent $ev): void{
              $player = $ev->getPlayer();
              $ev->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
+             $player->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
        }
          
           public function onHit(EntityDamageEvent $ev): void{
@@ -81,12 +89,14 @@ class MainIR extends PluginBase implements Listener {
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
          $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
+         $player->getLevel()->addSound(new DoorCrashSound($ev, $player));
       }
   
   
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
+          $player->getLevel()->addSound(new AnvilCrashSound($ev, $player));
          }
          
           public function onRespawn(PlayerRespawnEvent $ev) : void{
