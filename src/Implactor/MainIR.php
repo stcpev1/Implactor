@@ -396,7 +396,7 @@ class MainIR extends PluginBase implements Listener {
                                          $sender->sendMessage("§eYou are no longer §cvanished §eplayer!");
                                         }
                                          return false;
-                                        }
+                                      }
                                      if($this->getServer()->getPlayer($args[0])){
                                      $player = $this->getServer()->getPlayer($args[0]);
                                     if(!in_array($player->getName(), $this->vanish)){
@@ -419,4 +419,3 @@ class MainIR extends PluginBase implements Listener {
                                  }
                                  return true;
                                }
-                             }
