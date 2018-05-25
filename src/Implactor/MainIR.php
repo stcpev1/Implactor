@@ -27,6 +27,11 @@ use pocketmine\Player;
 use pocketmine\level\Level;
 use pocketmine\Server;
 
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\ListTag;
+use pocketmine\nbt\tag\DoubleTag;
+use pocketmine\nbt\tag\FloatTag;
+
 use pocketmine\plugin\PluginBase;
 use pocketmine\plugin\Plugin;
 use pocketmine\event\Listener;
@@ -41,6 +46,8 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Location;
 use pocketmine\level\Position;
+use pocketmine\entity\Entity;
+use pocketmine\math\Vector3;
 use pocketmine\level\particle\DestroyBlockParticle as FrostBloodParticle;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -52,6 +59,8 @@ use Implactor\particles\HubParticle;
 use Implactor\particles\DeathParticle;
 use Implactor\anti\AntiAdvertising;
 use Implactor\anti\AntiSwearing;
+use Implactor\npc\DeathHumanEntityTask;
+use Implactor\npc\DeathHumanClearEntityTask;
 
 class MainIR extends PluginBase implements Listener {
 	
@@ -79,7 +88,7 @@ class MainIR extends PluginBase implements Listener {
 	     public function onPlayerJoin(PlayerJoinEvent $ev): void{
              $player = $ev->getPlayer();
              $ev->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
-             $ev->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
+             $ev->getPlayer()->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
        }
          
           public function onHit(EntityDamageEvent $ev): void{
@@ -93,14 +102,39 @@ class MainIR extends PluginBase implements Listener {
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
          $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
-         $ev->getLevel()->addSound(new DoorCrashSound($ev, $player));
+         $ev->getPlayer()->getLevel()->addSound(new DoorCrashSound($this, $ev, $player));
       }
   
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
-          $ev->getLevel()->addSound(new AnvilCrashSound($ev, $player));
-         }
+          $ev->getPlayer()->getLevel()->addSound(new AnvilCrashSound($this, $ev, $player));
+         
+          $nbt = new CompoundTag("", [
+            new ListTag("Pos", [
+                new DoubleTag("", $player->getX()),
+                new DoubleTag("", $player->getY() - 1),
+                new DoubleTag("", $player->getZ())
+            ]),
+            new ListTag("Motion", [
+                new DoubleTag("", 0),
+                new DoubleTag("", 0),
+                new DoubleTag("", 0)
+            ]),
+            new ListTag("Rotation", [
+                new FloatTag("", 2),
+                new FloatTag("", 2)
+            ])
+        ]);
+        $nbt->setTag($player->namedtag->getTag("Skin"));
+        $npc = new DeathHumanEntityTask($player->getLevel(), $nbt);
+        $npc->getDataPropertyManager()->setBlockPos(DeathHumanEntityTask::DATA_PLAYER_BED_POSITION, new Vector3($player->getX(), $player->getY(), $player->getZ()));
+        $npc->setPlayerFlag(DeathHumanEntityTask::DATA_PLAYER_FLAG_SLEEP, true);
+        $npc->setNameTag("§7[§cDead§7] " .$player->getName(). "");
+        $npc->setNameTagAlwaysVisible(false);
+        $npc->spawnToAll();
+        $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearTask($this, $npc, $player), 20);
+       }
          
              public function onDamage(EntityDamageEvent $ev) : void{
              $entity = $ev->getEntity();
@@ -115,7 +149,8 @@ class MainIR extends PluginBase implements Listener {
                     $entity->setFlying(false);
                     $entity->setAllowFlight(false);
                     $entity->sendMessage("§l§7(§c!§7)§r §cYou are in combat mode§e! §cFly abilities has disabled automatically§e...");
-                    $entity->getLevel()->addParticle(new FrostBloodParticle($ev->getEntity(), Block::get(57)));
+                    $entity->getLevel()->addParticle(new FrostBloodParticle($ev->getEntity(), Block::get(57)));      
+                     if($entity instanceof DeathHumanEntityTask) $ev->setCancelled(true);
                   }
               }
           }
