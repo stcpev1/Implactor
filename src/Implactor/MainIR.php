@@ -79,7 +79,7 @@ class MainIR extends PluginBase implements Listener {
 	     public function onPlayerJoin(PlayerJoinEvent $ev): void{
              $player = $ev->getPlayer();
              $ev->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
-             $this->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
+             $ev->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
        }
          
           public function onHit(EntityDamageEvent $ev): void{
@@ -93,13 +93,13 @@ class MainIR extends PluginBase implements Listener {
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
          $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
-         $this->getLevel()->addSound(new DoorCrashSound($this, $ev, $player));
+         $ev->getLevel()->addSound(new DoorCrashSound($ev, $player));
       }
   
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
-          $this->getLevel()->addSound(new AnvilCrashSound($this, $ev, $player));
+          $ev->getLevel()->addSound(new AnvilCrashSound($ev, $player));
          }
          
              public function onDamage(EntityDamageEvent $ev) : void{
