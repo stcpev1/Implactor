@@ -25,5 +25,5 @@ namespace Implactor\npc;
 
 use pocketmine\entity\Human;
 
-class DeathNPCEntity extends Human{
+class DeathHumanEntityTask extends Human{
 }
