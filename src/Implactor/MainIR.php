@@ -98,6 +98,7 @@ class MainIR extends PluginBase implements Listener {
   
                       public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
                       if(strtolower($command->getName()) == "hub") {
+                      	if($sender instanceof Player){
                        if($sender->hasPermission("implactor.hub")) {
                           $pos = $sender->getLevel()->getSpawnLocation();
                           $sender->teleport($pos);
@@ -106,6 +107,7 @@ class MainIR extends PluginBase implements Listener {
                           return true;
                      }
                  }
+              }
                  
                        if(strtolower($command->getName()) == "sethub") {
                        	if($sender->hasPermission("implactor.sethub")) {                       	   
@@ -117,6 +119,7 @@ class MainIR extends PluginBase implements Listener {
                       }
                         
                         if(strtolower($command->getName()) == "fly") {
+                        	if($sender instanceof Player){
                        	if($sender->hasPermission("implactor.fly")) {                     	   
                                 if(!$sender->getAllowFlight()){
                                  $sender->setAllowFlight(true);
@@ -132,6 +135,7 @@ class MainIR extends PluginBase implements Listener {
                                 }
                                 return true;
                               }
+                           }
 			      
                            if(strtolower($command->getName()) == "gmc") {
                        	if($sender->hasPermission("implactor.gamemode")) {                      	   
@@ -166,6 +170,7 @@ class MainIR extends PluginBase implements Listener {
                             }
                           
                            if(strtolower($command->getName()) == "nick") {
+                           	if($sender instanceof Player){
                             if($sender->hasPermission("implactor.nick")){
                             if(count($args) > 0){
                             if($args[0] == "off"){
@@ -185,8 +190,10 @@ class MainIR extends PluginBase implements Listener {
                               }
                               return true;
                            }
+                         }
            
                                            if(strtolower($command->getName()) == "wild") {
+                                           	if($sender instanceof Player){
                                              if($sender->hasPermission("implactor.wild")){
                                              $x = mt_rand(1, 999);
                                              $z = mt_rand(1, 999);
@@ -197,7 +204,8 @@ class MainIR extends PluginBase implements Listener {
                                              return true;
                                            }
                                         }
-                                        
+                                    }
+                                      
                                             if(strtolower($command->getName()) == "kill") {
                                              if($sender->hasPermission("implactor.kill")){                                            
                                             $sender->setHealth(0);
@@ -207,12 +215,14 @@ class MainIR extends PluginBase implements Listener {
                                         }
                                       
                                     if(strtolower($command->getName()) == "ping") {
+                                    	if($sender instanceof Player){
                                      if($sender->hasPermission("implactor.ping")){
                                      $sender->sendMessage($sender->getPlayer()->getName(). "§aping status§c:");
                                      $sender->sendMessage("§b" . $sender->getPing() . "§fms §6on your connection§c!");
                                      return true;
                                   }
                               }
+                          }
                               
                               if(strtolower($command->getName()) == "clearitem") {
                                      if($sender->hasPermission("implactor.clearinventory")){                                  
@@ -223,8 +233,7 @@ class MainIR extends PluginBase implements Listener {
                                  }
                                  
                                  if(strtolower($command->getName()) == "cleararmor") {
-                                     if($sender->hasPermission("implactor.cleararmor")){
-                                     
+                                     if($sender->hasPermission("implactor.cleararmor")){                                  
                                     $sender->getArmorInventory()->clearAll();
                                     $sender->sendMessage("§eAll armors §awas cleared successfully from your body!");
                                     return true;
@@ -258,6 +267,7 @@ class MainIR extends PluginBase implements Listener {
                                   }
                                 
                                     if(strtolower($command->getName()) == "ihelp") {
+                                    	if($sender instanceof Player){
                                      if($sender->hasPermission("implactor.command.help")){
                                             $sender->sendMessage("§b--( §eImplactor §aHelp §b)--");
                                             $sender->sendMessage("§e/ihelp §9- §fImplactor Command List!");
@@ -281,8 +291,10 @@ class MainIR extends PluginBase implements Listener {
                                             return true;
                                            }
                                          }                                             
+                                      }
                                       
                                            if(strtolower($command->getName()) == "iabout") {
+                                           	if($sender instanceof Player){
                                            if($sender->hasPermission("implactor.command.about")){
                                              $sender->sendMessage("§b--§a[§d Implactor §a| §bAbout §a]§b--");
                                              $sender->sendMessage("§aA plugin with having some features!");
@@ -292,6 +304,7 @@ class MainIR extends PluginBase implements Listener {
                                            }
                                          }
                                        }
+                                     }
                                 
                                      
                                
