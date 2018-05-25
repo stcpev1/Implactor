@@ -374,5 +374,32 @@ class MainIR extends PluginBase implements Listener {
                                              }
                                            }
                                           }
-			                 }
-                                        }
+			                 
+			      
+			      if(strtolower($command->getName() === "vanish"){
+                              if($sender instanceof Player){
+                               $sender->sendMessage("Use this command in-game");
+                              return false;
+                          }
+                         if($sender->hasPermission("implactor.vanish")){
+                         $sender->sendMessage("§cYou have no permission allowed to use §bVanish §ccommand§e!");
+                        return false;
+                      }
+                     if(empty($args[0])){
+                if(!in_array($sender->getName(), $this->vanish)){
+                    $this->vanish[] = $sender->getName();
+                    $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
+                    $sender->setNameTagVisible(false);
+                    $sender->sendMessage("§bYou are now §6vanished §bplayer§e!");
+                }elseif(in_array($sender->getName(), $this->vanish)){
+                    unset($this->vanish[array_search($sender->getName(), $this->vanish)]);
+                    $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
+                    $sender->setNameTagVisible(true);
+                    $sender->sendMessage("§bYou are no longer §6vanished §bplayer§e!");
+                }
+                return false;
+               }
+             }
+          }
+        }
+      }
