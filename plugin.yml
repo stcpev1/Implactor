@@ -60,54 +60,51 @@ commands:
          description: About Implactor plugin!
          permission: implactor.command.about
 permissions:
+    implactor.*:
+     default: op
+     description: "Allows all Implactor commands"
     implactor.command.about:
-    description: "Allow players to check about Implactor plugin!"
-    default: true
+     description: "Allow players to check about Implactor plugin"
+     default: true
     implactor.command.help:
-    description: "Allow players to use Implactor help command list!"
-    default: true
+     description: "Allow players to use Implactor help command list"
+     default: true
     implactor.hub:
-    description: "Allow players to use command to return to hub!"
-    default: true
+     description: "Allow players to use command to return to hub"
+     default: true
     implactor.sethub:
-    description: "Allow OP staff members to set a main hub!"
-    default: op
+     description: "Allow OP staff members to set a main hub"
+     default: op
     implactor.wild:
-    description: "Allow players to use command to randomly teleport to wild!"
-    default: true
+     description: "Allow players to use command to randomly teleport to wild"
+     default: true
     implactor.clearinventory:
-    description: "Allow OP staff members to clear their inventory!"
-    default: op
+     description: "Allow OP staff members to clear their inventory"
+     default: op
     implactor.cleararmor:
-    description: "Allow OP staff members to clear their armors!"
-    default: op
+     description: "Allow OP staff members to clear their armors"
+     default: op
     implactor.clearall:
-    description: "Allow OP staff members to clear all of their items and armors"
-    default: op
+     description: "Allow OP staff members to clear all of their items and armors"
+     default: op
     implactor.fly:
-    description: "Allow players to use command to fly abilities!"
-    default: true
+     description: "Allow players to use command to fly abilities"
+     default: true
     implactor.gamemode:
-    description: "Allow OP staff members to changed their gamemodes!"
-    default: op
+     description: "Allow OP staff members to changed their gamemodes"
+     default: op
     implactor.feed:
-    description: "Allow OP staff members to feed themselves!"
-    default: op
+     description: "Allow OP staff members to feed themselves"
+     default: op
     implactor.heal:
-    description: "Allow OP staff members to heal themselves!"
-    default: op
+     description: "Allow OP staff members to heal themselves"
+     default: op
     implactor.kill:
-    description: "Allow OP staff members to kill themselves!"
-    default: op
+     description: "Allow OP staff members to kill themselves"
+     default: op
     implactor.ping:
-    description: "Allow players to see their ping status!"
-    default: true
+     description: "Allow players to see their ping status"
+     default: true
     implactor.nick:
-    description: "Allow players to nick themselves!"
-    default: true
-         
-         
-         
-         
-         
-         
+     description: "Allow players to nick themselves"
+     default: true
