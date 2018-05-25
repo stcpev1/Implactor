@@ -149,7 +149,7 @@ class MainIR extends PluginBase implements Listener {
                 if($entity->getAllowFlight() == true){
                     $entity->setFlying(false);
                     $entity->setAllowFlight(false);
-                    $entity->sendMessage("§l§7(§c!§7)§r §cYou are in combat mode§e! §cFly abilities has disabled automatically§e...");
+                    $entity->sendMessage("§l§7(§c!§7)§r §cYou are getting hit by a player!§e §cFly abilities has disabled automatically§e...");
                     $entity->getLevel()->addParticle(new FrostBloodParticle($ev->getEntity(), Block::get(57)));      
                      if($entity instanceof DeathHumanEntityTask) $ev->setCancelled(true);
                   }
@@ -168,7 +168,7 @@ class MainIR extends PluginBase implements Listener {
                       if(strtolower($command->getName()) == "hub") {
                       	if($sender instanceof Player){
                        if($sender->hasPermission("implactor.hub")) {
-                          $pos = $sender->getLevel()->getSpawnLocation();
+                          $pos = $sender->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());
                           $sender->teleport($pos);
                           $sender->addTitle("§7§l[§eHUB§7]§r", "§aReturning§f...");
                           $sender->sendMessage(IR::GRAY. "-------" .IR::WHITE. "\n Returning to hub..." .IR::GRAY. "\n-------");
