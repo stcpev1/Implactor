@@ -45,7 +45,7 @@ class DeathHumanClearEntityTask extends PluginTask {
     
     public function onRun(int $currentTick) : void{
         if($this->entity instanceof DeathHumanEntityTask){
-            if($this->entity->getNameTag() === "§7[§cDead§7] " . $this->player->getName()") $this->entity->close();
+            if($this->entity->getNameTag() === "§7[§cDead§7]§r ] .$this->player->getName()."") $this->entity->close();
         }
     }
 }
