@@ -67,7 +67,7 @@ class MainIR extends PluginBase implements Listener {
           $this->getLogger()->info(IR::RED . "Implactor plugin is now offline!");
           $this->getServer()->shutdown();
         }
-  
+          
          public function onPlayerLogin(PlayerLoginEvent $ev): void{
           $ev->getPlayer()->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());
 	}
@@ -75,7 +75,7 @@ class MainIR extends PluginBase implements Listener {
 	     public function onPlayerJoin(PlayerJoinEvent $ev): void{
              $player = $ev->getPlayer();
              $ev->setJoinMessage("§8[§a+§8] §a{$player->getName()}");
-             $player->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
+             $this->getLevel()->addSound(new EndermanTeleportSound($ev, $player));
        }
          
           public function onHit(EntityDamageEvent $ev): void{
@@ -89,15 +89,33 @@ class MainIR extends PluginBase implements Listener {
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
          $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
-         $player->getLevel()->addSound(new DoorCrashSound($ev, $player));
+         $this->getLevel()->addSound(new DoorCrashSound($this, $ev, $player));
       }
-  
   
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
-          $player->getLevel()->addSound(new AnvilCrashSound($ev, $player));
+          $this->getLevel()->addSound(new AnvilCrashSound($this, $ev, $player));
          }
+         
+             public function onDamage(EntityDamageEvent $ev) : void{
+             $entity = $ev->getEntity();
+             if($entity instanceof Player){
+            if($ev->getCause() === EntityDamageEvent::CAUSE_FALL){
+                $ev->setCancelled(true);
+             }
+                if($ev->getCause() !== $ev::CAUSE_FALL){
+                if(!$entity instanceof Player) return;
+                if($entity->isCreative()) return;
+                if($entity->getAllowFlight() == true){
+                    $entity->setFlying(false);
+                    $entity->setAllowFlight(false);
+                    $entity->sendMessage("§l§7(§c!§7)§r §cYou are in combat mode§e! §cFly abilities has disabled automatically§e...");
+                    $entity->getLevel()->addParticle(new FrostBloodParticle($ev->getEntity(), Block::get(57)));
+                  }
+              }
+          }
+       }
          
           public function onRespawn(PlayerRespawnEvent $ev) : void{
           $player = $ev->getPlayer();
@@ -150,7 +168,7 @@ class MainIR extends PluginBase implements Listener {
                            if(strtolower($command->getName()) == "gmc") {
                        	if($sender->hasPermission("implactor.gamemode")) {                      	   
                        	   $sender->setGamemode(Player::CREATIVE);
-                           $sender->sendMessage("§eChanged your gamemode to §aCreative §emode!");
+                           $sender->sendMessage("§eChanged your gamemode to §aCreative §emode! \n\n §7- §cDo not use this command again when you're already changed...");
                            return true;
                        }
                      }
@@ -158,7 +176,7 @@ class MainIR extends PluginBase implements Listener {
                            if(strtolower($command->getName()) == "gms") {
                        	if($sender->hasPermission("implactor.gamemode")) {                       	   
                               $sender->setGamemode(Player::SURVIVAL); 
-                              $sender->sendMessage("§eChanged your gamemode to §cSurvival §emode!");
+                              $sender->sendMessage("§eChanged your gamemode to §cSurvival §emode! \n\n §7- §cDo not use this command again when you're already changed...");
                               return true;
                        }
                      }
@@ -166,7 +184,7 @@ class MainIR extends PluginBase implements Listener {
                            if(strtolower($command->getName()) == "gma") {
                        	if($sender->hasPermission("implactor.gamemode")) {                     	   
                        	   $sender->setGamemode(Player::ADVENTURE);
-                           $sender->sendMessage("§eChanged your gamemode to §cAdventure §emode!");
+                           $sender->sendMessage("§eChanged your gamemode to §cAdventure §emode! \n\n §7- §cDo not use this command again when you're already changed...");
                            return true;
                         }
                       }
@@ -174,11 +192,8 @@ class MainIR extends PluginBase implements Listener {
                            if(strtolower($command->getName()) == "gmspc") {
                        	if($sender->hasPermission("implactor.gamemode")) {
                               $sender->setGamemode(Player::SPECTATOR);
-                              $sender->sendMessage("§eChanged your gamemode to §bSpectator §emode!");
-                              }else{
-                                $sender->setGamemode(Player::SPECTATOR);
-                                $sender->sendMessage("§cYou are already in §bSpectator §emode!");
-                                 return true;
+                              $sender->sendMessage("§eChanged your gamemode to §bSpectator §emode! \n\n §7- §cDo not use this command again when you're already changed...");
+                              return true;
                             }
                          }
 			      
@@ -214,7 +229,7 @@ class MainIR extends PluginBase implements Listener {
                                              $y = $sender->getLevel()->getHighestBlockAt($x, $z) + 1;
                                              $sender->teleport(new Position($x, $y, $z, $sender->getLevel()));
                                              $sender->addTitle("§7§l[§dWILD§7]§r", "§fRandom Teleporting...");
-                                             $sender->sendMessage("§7-------\n §cWild randomly\n §cteleporting... §7\n-------");
+                                             $sender->sendMessage("§7-------\n §cWild randomly teleporting... §7\n-------");
                                              return true;
                                            }
                                         }
@@ -318,8 +333,6 @@ class MainIR extends PluginBase implements Listener {
                                            }
                                          }
                                        }
-                                     }
-                                
-                                     
+                                    }
                                
     
