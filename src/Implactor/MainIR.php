@@ -168,7 +168,7 @@ class MainIR extends PluginBase implements Listener {
                       if(strtolower($command->getName()) == "hub") {
                       	if($sender instanceof Player){
                        if($sender->hasPermission("implactor.hub")) {
-                          $pos = $sender->teleport($this->getServer()->getDefaultLevel()->getSafeSpawn());
+                          $pos = $sender->teleport($sender->getServer()->getDefaultLevel()->getSafeSpawn());
                           $sender->teleport($pos);
                           $sender->addTitle("§7§l[§eHUB§7]§r", "§aReturning§f...");
                           $sender->sendMessage(IR::GRAY. "-------" .IR::WHITE. "\n Returning to hub..." .IR::GRAY. "\n-------");
@@ -198,7 +198,7 @@ class MainIR extends PluginBase implements Listener {
                                  $sender->sendMessage("§8§l(§c!§8)§r §7You have §cdisabled §7your fly ability!");
                                  }
                                }else{
-                                 $sender->sendMessage("§cYou have no permission allowed to use §fFly §ccommand!");
+                                 $sender->sendMessage("§cYou have no permission allowed to use §fFly §ccommand§e!");
                                  return false;
                                 }
                                 return true;
@@ -254,7 +254,7 @@ class MainIR extends PluginBase implements Listener {
                             return false;
                              }
                           }else{
-                             $sender->sendMessage("§cYou have no permission allowed to use §bNick §ccommand!");
+                             $sender->sendMessage("§cYou have no permission allowed to use §bNick §ccommand§e!");
                               return false;
                               }
                               return true;
@@ -357,6 +357,7 @@ class MainIR extends PluginBase implements Listener {
                                             $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
                                             $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
                                             $sender->sendMessage("§e/nick §9- §fSet your nickname or default!"); 
+					    $sender->sendMessage("§e/vanish §9- §fVanish or un-vanish yourself and other players!");
                                             return true;
                                            }
                                          }                                             
@@ -371,8 +372,51 @@ class MainIR extends PluginBase implements Listener {
                                              return true;
                                              }
                                            }
-                                         }
-                                       }
-                                    }
+                                         }                                       
                                
-    
+                                           if(strtolower($command->getName() === "vanish"){
+                                            if($sender instanceof Player){
+                                            $sender->sendMessage("This command is only works in-game server!");
+                                            return false;
+                                          }
+                                            if(!$sender->hasPermission("implactor.vanish")){
+                                            $sender->sendMessage("§cYou have no permission allowed to use §aVan§fish §ccommand§e!");
+                                            return false;
+                                        }
+                                         if(empty($args[0])){
+                                         if(!in_array($sender->getName(), $this->vanish)){
+                                         $this->vanish[] = $sender->getName();
+                                         $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
+                                         $sender->setNameTagVisible(false);
+                                         $sender->sendMessage("§eYou are now §avanished §eplayer!");
+                                       }elseif(in_array($sender->getName(), $this->vanish)){
+                                         unset($this->vanish[array_search($sender->getName(), $this->vanish)]);
+                                         $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
+                                         $sender->setNameTagVisible(true);
+                                         $sender->sendMessage("§eYou are no longer §cvanished §eplayer!");
+                                        }
+                                         return false;
+                                        }
+                                     if($this->getServer()->getPlayer($args[0])){
+                                     $player = $this->getServer()->getPlayer($args[0]);
+                                    if(!in_array($player->getName(), $this->vanish)){
+                                     $this->vanish[] = $player->getName();
+                                     $player->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
+                                     $player->setNameTagVisible(false);
+                                     $player->sendMessage("§eYou are now §avanished §eplayer!");
+                                     $sender->sendMessage("§eYou have vanished§r ". $player->getName() ."");
+                                   }elseif(in_array($player->getName(), $this->vanish)){
+                                     unset($this->vanish[array_search($player->getName(), $this->vanish)]);
+                                     $player->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
+                                     $player->setNameTagVisible(true);
+                                     $player->sendMessage("§eYou are no longer §cvanished §eplayer!");
+                                     $sender->sendMessage("§eYou have un-vanished§r ". $player->getName() ."");
+                                    }
+                                 }else{
+                                     $sender->sendMessage("§bPlayer couldn't be found to §cvanish §bthem!");
+                                     return false;
+                                    }
+                                 }
+                                 return true;
+                               }
+                             }
