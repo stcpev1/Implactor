@@ -74,6 +74,7 @@ class MainIR extends PluginBase implements Listener {
          $this->getServer()->getPluginManager()->registerEvents($this, $this);
          $this->getServer()->getPluginManager()->registerEvents(new AntiAdvertising($this), $this);
          $this->getServer()->getPluginManager()->registerEvents(new AntiSwearing($this), $this);
+	 Entity::registerEntity(DeathHumanEntityTask::class, true);
        }
   
          public function onDisable(): void{
@@ -102,13 +103,13 @@ class MainIR extends PluginBase implements Listener {
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
          $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
-         $ev->getPlayer()->getLevel()->addSound(new DoorCrashSound($this, $ev, $player));
+         $ev->getPlayer()->getLevel()->addSound(new DoorCrashSound($ev, $player));
       }
   
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
-          $ev->getPlayer()->getLevel()->addSound(new AnvilCrashSound($this, $ev, $player));
+          $ev->getPlayer()->getLevel()->addSound(new AnvilCrashSound($ev, $player));
          
           $nbt = new CompoundTag("", [
             new ListTag("Pos", [
@@ -133,7 +134,7 @@ class MainIR extends PluginBase implements Listener {
         $npc->setNameTag("§7[§cDead§7] " .$player->getName(). "");
         $npc->setNameTagAlwaysVisible(false);
         $npc->spawnToAll();
-        $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearTask($this, $npc, $player), 20);
+        $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearEntityTask($this, $npc, $player), 20);
        }
          
              public function onDamage(EntityDamageEvent $ev) : void{
