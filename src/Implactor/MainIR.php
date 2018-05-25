@@ -175,8 +175,8 @@ class MainIR extends PluginBase implements Listener {
                        	if($sender->hasPermission("implactor.gamemode")) {
                               $sender->setGamemode(Player::SPECTATOR);
                               $sender->sendMessage("§eChanged your gamemode to §bSpectator §emode!");
-                              return true;
                               }else{
+                                $sender->setGamemode(Player::SPECTATOR);
                                 $sender->sendMessage("§cYou are already in §bSpectator §emode!");
                                  return true;
                             }
