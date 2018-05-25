@@ -159,7 +159,7 @@ class MainIR extends PluginBase implements Listener {
          
           public function onRespawn(PlayerRespawnEvent $ev) : void{
           $player = $ev->getPlayer();
-            $title = "§l§cYOU DIED!";
+            $title = "§l§cYOU ARE DEAD!";
              $subtitle = "§eThat's hurt, ouch!";
               $player->addTitle($title, $subtitle);
          }
@@ -269,7 +269,7 @@ class MainIR extends PluginBase implements Listener {
                                              $y = $sender->getLevel()->getHighestBlockAt($x, $z) + 1;
                                              $sender->teleport(new Position($x, $y, $z, $sender->getLevel()));
                                              $sender->addTitle("§7§l[§dWILD§7]§r", "§fRandom Teleporting...");
-                                             $sender->sendMessage("§7-------\n §cWild randomly teleporting... §7\n-------");
+                                             $sender->sendMessage("§7-------\n §cTeleporting to random\n §cof §dwild zone§c... §7\n-------");
                                              return true;
                                            }
                                         }
