@@ -27,7 +27,6 @@ use pocketmine\Player;
 use pocketmine\level\Level;
 use pocketmine\Server;
 
-use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\DoubleTag;
@@ -134,7 +133,7 @@ class MainIR extends PluginBase implements Listener {
         $npc->setNameTag("§7[§cDead§7] " .$player->getName(). "");
         $npc->setNameTagAlwaysVisible(false);
         $npc->spawnToAll();
-        $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearTask($this, $npc, $player), 3600);
+        $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearTask($this, $npc, $player), 20);
        }
     }
          
