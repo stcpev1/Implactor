@@ -109,7 +109,7 @@ class MainIR extends PluginBase implements Listener {
           public function onPlayerDeath(PlayerDeathEvent $ev): void{
           $player = $ev->getPlayer();
           $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathParticle($this, $player), 20);
-          $player->getLevel()->addSound(new AnvilCrashSound($player));
+          $player->getLevel()->addSound(new AnvilBreakSound($player));
          
           $nbt = new CompoundTag("", [
             new ListTag("Pos", [
