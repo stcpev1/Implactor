@@ -378,9 +378,6 @@ class MainIR extends PluginBase implements Listener {
                                            if(strtolower($command->getName() === "vanish"){
                                             if($sender instanceof Player){
                                             if($sender->hasPermission("implactor.vanish")){
-                                            $sender->sendMessage("§cYou have no permission allowed to use §aVan§fish §ccommand§e!");
-                                            return false;
-                                        }
                                          if(empty($args[0])){
                                          if(!in_array($sender->getName(), $this->vanish)){
                                          $this->vanish[] = $sender->getName();
@@ -419,3 +416,4 @@ class MainIR extends PluginBase implements Listener {
                                }
                             }
                           }
+                        }
