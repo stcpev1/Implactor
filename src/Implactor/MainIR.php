@@ -131,7 +131,7 @@ class MainIR extends PluginBase implements Listener {
         $npc = new DeathHumanEntityTask($player->getLevel(), $nbt);
         $npc->getDataPropertyManager()->setBlockPos(DeathHumanEntityTask::DATA_PLAYER_BED_POSITION, new Vector3($player->getX(), $player->getY(), $player->getZ()));
         $npc->setPlayerFlag(DeathHumanEntityTask::DATA_PLAYER_FLAG_SLEEP, true);
-        $npc->setNameTag("§7[§cDead§7] " . $player->getName());
+        $npc->setNameTag("§7[§cDead§7] " .$player->getName(). "");
         $npc->setNameTagAlwaysVisible(false);
         $npc->spawnToAll();
         $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearTask($this, $npc, $player), 3600);
@@ -151,8 +151,7 @@ class MainIR extends PluginBase implements Listener {
                     $entity->setFlying(false);
                     $entity->setAllowFlight(false);
                     $entity->sendMessage("§l§7(§c!§7)§r §cYou are in combat mode§e! §cFly abilities has disabled automatically§e...");
-                    $entity->getLevel()->addParticle(new FrostBloodParticle($ev->getEntity(), Block::get(57)));
-                    
+                    $entity->getLevel()->addParticle(new FrostBloodParticle($ev->getEntity(), Block::get(57)));      
                      if($entity instanceof DeathHumanEntityTask) $ev->setCancelled(true);
                   }
               }
