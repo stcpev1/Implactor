@@ -357,8 +357,7 @@ class MainIR extends PluginBase implements Listener {
                                             $sender->sendMessage("§e/clearitem §9- §fClear your items from your inventory!");
                                             $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
                                             $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
-                                            $sender->sendMessage("§e/nick §9- §fSet your nickname or default!"); 
-					    $sender->sendMessage("§e/vanish §9- §fVanish or un-vanish yourself and other players!");
+                                            $sender->sendMessage("§e/nick §9- §fSet your nickname or default!");
                                             return true;
                                            }
                                          }                                             
@@ -374,27 +373,5 @@ class MainIR extends PluginBase implements Listener {
                                              }
                                            }
                                           }
-			                 
-			      
-			
-		if(strtolower($command->getName() === "vanish"){
-                         if($sender instanceof Player){
-                         if($sender->hasPermission("implactor.vanish")){
-                     if(empty($args[0])){
-                     if(!in_array($sender->getName(), $this->vanish)){
-                    $this->vanish[] = $sender->getName();
-                    $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
-                    $sender->setNameTagVisible(false);
-                    $sender->sendMessage("§bYou are now §6vanished §bplayer§e!");
-                }elseif(in_array($sender->getName(), $this->vanish)){
-                    unset($this->vanish[array_search($sender->getName(), $this->vanish)]);
-                    $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
-                    $sender->setNameTagVisible(true);
-                    $sender->sendMessage("§bYou are no longer §6vanished §bplayer§e!");
-                }
-                return true;
-               }
-             }
-          }
-        }
-     }
+                                        }
+                                      }
