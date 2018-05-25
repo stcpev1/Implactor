@@ -135,8 +135,6 @@ class MainIR extends PluginBase implements Listener {
         $npc->spawnToAll();
         $this->getServer()->getScheduler()->scheduleDelayedTask(new DeathHumanClearTask($this, $npc, $player), 20);
        }
-    }
-}
          
              public function onDamage(EntityDamageEvent $ev) : void{
              $entity = $ev->getEntity();
