@@ -3,6 +3,7 @@ version: IR-1.2
 api: [3.0.0-ALPHA12]
 main: Implactor\MainIR
 author: Zadezter
+authors: gayness plugin
 
 commands:
     hub:
