@@ -42,12 +42,12 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Location;
 use pocketmine\level\Position;
 use pocketmine\entity\Entity;
-use pocketmine\entity\EffectInstance;
 use pocketmine\math\Vector3;
 use pocketmine\level\particle\DestroyBlockParticle as FrostBloodParticle;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -100,7 +100,11 @@ class MainIR extends PluginBase implements Listener {
                   }
                 }
               }
-     
+	
+           public function onMove(PlayerMoveEvent $ev) : void{
+            if(in_array($ev->getPlayer()->getName(), $this->freeze)) $event->setCancelled(true);
+         }    
+	
          public function onPlayerQuit(PlayerQuitEvent $ev): void{
          $player = $ev->getPlayer();
          $ev->setQuitMessage("§8[§c-§8] §c{$player->getName()}");   
@@ -251,7 +255,7 @@ class MainIR extends PluginBase implements Listener {
                             $sender->sendMessage("§l§8(§a!§8)§r §7You have set your nickname as §l§a" . $args[0] . "§7!");
                              }
                          }else{
-                            $sender->sendMessage("§l§8(§6!§8)§r §l§cCommand usage§8:§r§7 /nick <name|off>");
+                            $sender->sendMessage("§l§8(§6!§8)§r §cCommand usage§8:§r§7 /nick <name|off>");
                             return false;
                              }
                           }else{
@@ -358,12 +362,13 @@ class MainIR extends PluginBase implements Listener {
                                             $sender->sendMessage("§e/cleararmor §9- §fClear your armor from your body!");
                                             $sender->sendMessage("§e/clearall §9- §fClear all items/armors from your inventory and body!");
                                             $sender->sendMessage("§e/nick §9- §fSet your nickname or default!");
+					     $sender->sendMessage("§e/freeze §9- §bFreeze §fyourself or others will make you not move!");
                                             return true;
                                            }
                                          }                                             
                                       }
-                                      
-                                           if(strtolower($command->getName()) == "iabout") {
+			      
+			                     if(strtolower($command->getName()) == "iabout") {
                                            	if($sender instanceof Player){
                                            if($sender->hasPermission("implactor.command.about")){
                                              $sender->sendMessage("§b--§a[§d Implactor §a| §bAbout §a]§b--");
@@ -373,5 +378,39 @@ class MainIR extends PluginBase implements Listener {
                                              }
                                            }
                                           }
+                                      
+			                    if(strtolower($command->getName()) === "freeze"){
+                                           if(!$sender instanceof Player){
+                                          $sender->sendMessage("§cPlease use Implactor command in-game server!");
+                                          return false;
                                         }
-                                      }
+                                          if(!$sender->hasPermission("implactor.freeze")){
+                                           $sender->sendMessage("§cYou don't have permission allowed to use §bFreeze §ccommand§e!");
+                                           return false;
+                                         }
+                                          if(empty($args[0])){
+                                          $sender->sendMessage("§8§l(§6!§8)§r §Command Usage§e:§r §b/freeze <player>");
+                                          return false;
+                                         }
+                                    if($this->getServer()->getPlayer($args[0])){
+                                    $player = $this->getServer()->getPlayer($args[0]);
+                                  if(!in_array($player->getName(), $this->freeze)){
+                                  $this->freeze[] = $player->getName();
+                                  $player->sendMessage(IR::AQUA . "You have been frozen player!");
+                                  $sender->sendMessage(IR::AQUA . "You have frozen " . $player->getName());
+                                 }elseif(in_array($player->getName(), $this->freeze)){
+                                   unset($this->freeze[array_search($player->getName(), $this->freeze)]);
+                                   $player->sendMessage(IR::AQUA . "You have been unfrozen player!");
+                                   $sender->sendMessage(IR::AQUA . "You have unfrozen " . $player->getName());
+                                  }
+                               }else{
+                                $sender->sendMessage("§cPlayer not found in server!");
+                                return false;
+                               }
+                           }
+                           return true;
+                          }
+                         }
+
+			                  
+                                                                               
